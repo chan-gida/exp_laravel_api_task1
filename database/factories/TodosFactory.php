@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Todos;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +11,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TodosFactory extends Factory
 {
+
+    // 🔽 追加
+    protected $model = Todos::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +23,8 @@ class TodosFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(), // UserモデルのFactoryを使用してユーザを生成
+            'tweet' => $this->faker->text(200) // ダミーのテキストデータ
         ];
     }
 }
